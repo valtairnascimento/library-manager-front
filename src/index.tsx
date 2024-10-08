@@ -6,6 +6,8 @@ import { AuthProvider } from "./hooks/auth";
 import App from "./App";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { UserProvider } from "./services/contexts/UserContext";
+import { BookProvider } from "./services/contexts/BookContext";
+import { LoanProvider } from "./services/contexts/LoanContext";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +20,11 @@ root.render(
       <ThemeLibraryProvider>
         <AuthProvider>
           <UserProvider>
-            <App />
+            <BookProvider>
+              <LoanProvider>
+                <App />
+              </LoanProvider>
+            </BookProvider>
           </UserProvider>
         </AuthProvider>
       </ThemeLibraryProvider>

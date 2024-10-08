@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../services/contexts/UserContext";
-import { Modal } from "../../hooks/useModal"; // Importando o Modal que já foi criado
+import { Modal } from "../../hooks/useModal";
 import Input from "../Input";
 import Button from "../Button";
 

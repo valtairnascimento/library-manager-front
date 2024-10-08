@@ -9,7 +9,7 @@ import CreateUserModal from "../../components/Modals/CreateUserModal";
 
 const List: React.FC = () => {
   const { users, isLoading } = useUser();
-  const { isOpen, openModal, closeModal } = useModal(); // Hook para controle do modal
+  const { isOpen, openModal, closeModal } = useModal();
 
   if (isLoading) {
     return <div>Carregando usuários...</div>;
@@ -18,7 +18,6 @@ const List: React.FC = () => {
   return (
     <Container>
       <ContentHeader title="Usuários" linecolor="#E44C4E">
-        {/* Abre o modal ao clicar */}
         <ButtonInput label="Criar Usuário" onClick={openModal} />
       </ContentHeader>
 
@@ -34,7 +33,6 @@ const List: React.FC = () => {
         ))}
       </Content>
 
-      {/* Modal de criação de usuário */}
       <CreateUserModal isOpen={isOpen} closeModal={closeModal} />
     </Container>
   );
