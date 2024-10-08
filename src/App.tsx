@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./styles/GlobalStyles";
+import { AuthProvider } from "./hooks/auth";
 
-function App() {
+import { useTheme } from "./hooks/theme";
+import Routes from "./routes";
+import axios from "axios";
+
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem("@library-manager-front:token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+const App: React.FC = () => {
+  const { theme } = useTheme();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <GlobalStyles />
+        <Routes />
+      </AuthProvider>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
